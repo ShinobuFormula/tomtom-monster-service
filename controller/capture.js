@@ -80,7 +80,6 @@ const encounter = (monstersID) => {
   let finalMonster = {};
   let lastRate = 0;
   const rand = Math.floor(Math.random() * (100 - 1 + 1) + 1);
-  console.log(rand);
   monstersID.map((elem) => {
     intervals.push({ min: lastRate + 1, max: lastRate + elem.appearRate });
     lastRate = elem.appearRate;
