@@ -10,7 +10,7 @@ const monsterInfoSchema = new mongoose.Schema({
 
 const monsterInfoModel = mongoose.model('MonsterInfo', monsterInfoSchema)
 
-exports.getAll = async () => {
+exports.getAllMonsterInfos = async () => {
     const monsters = await monsterInfoModel.find();
     return monsters
 }
