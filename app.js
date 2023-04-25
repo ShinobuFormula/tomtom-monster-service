@@ -7,7 +7,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
 //router
-const monster = require('./router/monster')
+const monster = require('./router/monsterInfo')
+const capture = require('./router/capture')
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -22,11 +23,13 @@ app.use(cors(corsOptions));
 
 
 
-app.use('/monster', monster)
+app.use('/monsterinfo', monster)
+app.use('/capture', capture)
+
 
 
 app.get('/', function (req, res) {
-    res.send('Monster micro services')
+    res.send('MonsterInfo micro services')
 })
 
 app.listen(3001, () => {
