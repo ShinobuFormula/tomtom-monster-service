@@ -1,15 +1,19 @@
-const express = require('express');
-const router = express.Router()
-const { launchCapture } = require('../controller/capture');
+import express from "express";
+import { launchCapture } from "../controller/capture.js";
 
-router.post("/launch/:zone", (req, res) => {
-    res.json(launchCapture(req.params.zone));
-})
+const captureRouter = () => {
+	const router = express.Router();
 
+	router.post("/launch/:zone", (req, res) => {
+		res.json(launchCapture(req.params.zone));
+	});
 
-router.post("/", (req, res) => {
-    res.send("capture monster")
-   // res.json(captureMonster(req.body));
-})
+	router.post("/", (req, res) => {
+		res.send("capture monster");
+		// res.json(captureMonster(req.body));
+	});
 
-module.exports = router;
+	return router;
+};
+
+export default captureRouter;

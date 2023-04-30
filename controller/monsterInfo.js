@@ -1,30 +1,43 @@
-const { postAffinity, getAllAffinities, getEffectiveness } = require("../model/affinity")
-const { postMonsterInfo, getAllMonsterInfos } = require("../model/monsterInfo")
-const { getAllTypes } = require("../model/type")
+import {
+	postAffinity,
+	getAllAffinities,
+	getEffectiveness,
+} from "../model/affinity.js";
+import { postMonsterInfo, getAllMonsterInfos } from "../model/monsterInfo.js";
+import { getAllTypes } from "../model/type.js";
 
-const checkStats = (stats) => {
-}
+const checkStats = (stats) => {};
 
-exports.addMonsterInfo = (body) => {
-   return postMonsterInfo(body)
-}
+const addMonsterInfo = (body) => {
+	return postMonsterInfo(body);
+};
 
-exports.addAffinity = (body) => {
-   return postAffinity(body)
-}
+const addAffinity = (body) => {
+	return postAffinity(body);
+};
 
-exports.queryAllMonsterInfos = async () => {
-   return await getAllMonsterInfos()
-}
+const queryAllMonsterInfos = async () => {
+	return await getAllMonsterInfos();
+};
 
-exports.queryAllAffinities = async () => {
-   return await getAllAffinities()
-}
+const queryAllAffinities = async () => {
+	return await getAllAffinities();
+};
 
-exports.queryEffectiveness = async (attackType, defenseType) => {
-   return await getEffectiveness(attackType, defenseType)
-}
+const queryEffectiveness = async (attackType, defenseType) => {
+	return await getEffectiveness(attackType, defenseType);
+};
 
-exports.queryAllTypes = async () => {
-   return await getAllTypes()
-}
+const queryAllTypes = async () => {
+	return await getAllTypes();
+};
+
+export {
+	checkStats,
+	addMonsterInfo,
+	addAffinity,
+	queryAllAffinities,
+	queryAllTypes,
+	queryEffectiveness,
+	queryAllMonsterInfos,
+};

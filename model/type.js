@@ -1,12 +1,14 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose";
 
 const typeSchema = new mongoose.Schema({
-    name: String,
-})
+	name: String,
+});
 
-const typeModel = mongoose.model('types', typeSchema)
+const typeModel = mongoose.model("types", typeSchema);
 
-exports.getAllTypes = async () => {
-    const types = await typeModel.find();
-    return types
-}
+const getAllTypes = async () => {
+	const types = await typeModel.find();
+	return types;
+};
+
+export { getAllTypes };

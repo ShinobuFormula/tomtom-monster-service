@@ -1,29 +1,45 @@
-const express = require('express');
-const router = express.Router()
-const { addMonsterInfo, addAffinity, queryAllAffinities, queryMonsterInfos, queryAllTypes, queryEffectiveness } = require('../controller/monsterInfo');
+import express from "express";
+import {
+	addMonsterInfo,
+	addAffinity,
+	queryAllMonsterInfos,
+	queryAllAffinities,
+	queryAllTypes,
+	queryEffectiveness,
+} from "../controller/monsterInfo.js";
 
-router.get("/", async (req, res) => {
-    res.json(await queryAllMonsterInfos())
-})
+const monsterInfoRouter = () => {
+	const router = express.Router();
 
-router.post("/", async (req, res) => {
-    res.json(await addMonsterInfo(req.body))
-})
+	router.get("/", async (req, res) => {
+		const monsterInfo = await queryAllMonsterInfos();
+		if (monsterInfo) res.json(monsterInfo);
+		else res.status(400).send("Can't retrieve monster infos");
+	});
 
-router.get("/affinity", async (req, res) => {
-    res.json(await queryAllAffinities())
-})
+	router.post("/", async (req, res) => {
+		res.json(await addMonsterInfo(req.body));
+	});
 
-router.post("/affinity", async (req, res) => {
-    res.json(await addAffinity(req.body))
-})
+	router.get("/affinity", async (req, res) => {
+		res.json(await queryAllAffinities());
+	});
 
-router.get("/affinity/:attackType/:defenseType", async (req, res) => {
-    res.json(await queryEffectiveness(req.params.attackType, req.params.defenseType))
-})
+	router.post("/affinity", async (req, res) => {
+		res.json(await addAffinity(req.body));
+	});
 
-router.get("/type", async (req, res) => {
-    res.json(await queryAllTypes())
-})
+	router.get("/affinity/:attackType/:defenseType", async (req, res) => {
+		res.json(
+			await queryEffectiveness(req.params.attackType, req.params.defenseType)
+		);
+	});
 
-module.exports = router;
+	router.get("/type", async (req, res) => {
+		res.json(await queryAllTypes());
+	});
+
+	return router;
+};
+
+export default monsterInfoRouter;
