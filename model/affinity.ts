@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
 const affinitySchema = new mongoose.Schema({
-	attack: String,
-	defense: String,
-	effectiveness: Number,
+	name: String,
+	affinities: {},
 });
 
 const affinityModel = mongoose.model("affinities", affinitySchema);
@@ -25,11 +24,11 @@ const updateAffinity = async (id, body) => {
 	affinity.save();
 };
 
-const getEffectiveness = async (attackType, defenseType) => {
+const getEffectiveness = async (attackType) => {
 	const affinity = await affinityModel.findOne({
-		attack: attackType,
-		defense: defenseType,
+		name: attackType,
 	});
+
 	return affinity;
 };
 
