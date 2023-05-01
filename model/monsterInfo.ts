@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { MonsterInfoInterface } from "./interfaces/monster";
 
-const monsterInfoSchema = new mongoose.Schema({
+const monsterInfoSchema = new mongoose.Schema<MonsterInfoInterface>({
 	name: String,
 	type: [String],
 	stats: {
@@ -12,7 +13,8 @@ const monsterInfoSchema = new mongoose.Schema({
 		balance: Number,
 	},
 	image: String,
-	passive: String,
+	passive: [String],
+	trait: String,
 	skills: [String],
 });
 
@@ -32,7 +34,7 @@ const updateMonsterInfo = async (id, body) => {
 	const monster = await monsterInfoModel.findOneAndUpdate({ _id: id }, body, {
 		new: true,
 	});
-	monster.save();
+	return monster.save();
 };
 
 export { getAllMonsterInfos, postMonsterInfo, updateMonsterInfo };

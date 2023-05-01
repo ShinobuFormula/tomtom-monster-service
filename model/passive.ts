@@ -10,7 +10,7 @@ const passiveSchema = new mongoose.Schema<PassiveInterface>({
 		actionType: { type: String, required: true },
 		from: String,
 		to: String,
-		type: String,
+		type: { type: String },
 		target: String,
 	},
 	events: [
@@ -34,4 +34,16 @@ const getAllPassives = async () => {
 	return passives;
 };
 
-export { getAllPassives };
+const postPassive = (sentPassive: PassiveInterface) => {
+	const passive = new passiveModel(sentPassive);
+	return passive.save();
+};
+
+const updatePassive = async (id, body) => {
+	const passive = await passiveModel.findOneAndUpdate({ _id: id }, body, {
+		new: true,
+	});
+	passive.save();
+};
+
+export { getAllPassives, postPassive, updatePassive };

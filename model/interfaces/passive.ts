@@ -1,4 +1,5 @@
 import { effectTypeEnum, targetTypeEnum } from "./fight";
+import { monsterType } from "./monster";
 
 enum targetEnum {
 	TO = "to",
@@ -19,7 +20,7 @@ interface PassiveInterface {
 		actionType: `${effectTypeEnum}`;
 		from: string;
 		to: string;
-		type: string;
+		type: `${monsterType}`;
 		target: string;
 	};
 	events: [
