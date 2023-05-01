@@ -13,6 +13,8 @@ enum effectTypeEnum {
 	BALANCE = "balance",
 	HEAL = "heal",
 	SWAP = "swap",
+	PATTACK = "+attack",
+	MATTACK = "+attack",
 }
 
 export { targetTypeEnum, effectTypeEnum };

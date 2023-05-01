@@ -12,8 +12,13 @@ interface SkillInterface {
 	description: string;
 	type: `${monsterType}`;
 	cost: { type: `${skillCostEnum}`; value: number };
-	effects: [{ type: `${effectTypeEnum}`; power: number }];
-	target: `${targetTypeEnum}`;
+	effects: [
+		{
+			targetType: `${targetTypeEnum}`;
+			type: `${effectTypeEnum}`;
+			power: number;
+		}
+	];
 	priority: number;
 }
 

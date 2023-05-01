@@ -11,11 +11,11 @@ const skillSchema = new mongoose.Schema<SkillInterface>({
 	},
 	effects: [
 		{
+			targetType: { type: String, required: true },
 			type: { type: String, required: true },
 			power: { type: Number, required: true },
 		},
 	],
-	target: { type: String, required: true },
 	priority: { type: Number, required: true },
 });
 

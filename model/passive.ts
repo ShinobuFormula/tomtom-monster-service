@@ -13,16 +13,12 @@ const passiveSchema = new mongoose.Schema<PassiveInterface>({
 		type: { type: String },
 		target: String,
 	},
-	events: [
+	effects: [
 		{
 			targetType: { type: String, required: true },
 			target: { type: String, required: true },
-			effects: [
-				{
-					type: { type: String, required: true },
-					power: Number,
-				},
-			],
+			type: { type: String, required: true },
+			power: { type: Number, required: true },
 		},
 	],
 });

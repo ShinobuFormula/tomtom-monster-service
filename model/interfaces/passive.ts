@@ -23,18 +23,14 @@ interface PassiveInterface {
 		type: `${monsterType}`;
 		target: string;
 	};
-	events: [
+	effects: [
 		{
 			targetType: `${targetTypeEnum}`;
 			target: `${targetEnum}`;
-			effects: [
-				{
-					type: `${effectTypeEnum}`;
-					power: number;
-				}
-			];
+			type: `${effectTypeEnum}`;
+			power: number;
 		}
 	];
 }
 
-export { PassiveInterface };
+export { PassiveInterface, targetEnum };
