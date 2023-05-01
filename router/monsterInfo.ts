@@ -8,6 +8,8 @@ import {
 	queryEffectiveness,
 } from "../controller/monsterInfo.js";
 
+import { getAllPassives } from "../model/passive.js";
+
 const monsterInfoRouter = () => {
 	const router = express.Router();
 
@@ -37,6 +39,10 @@ const monsterInfoRouter = () => {
 
 	router.get("/type", async (req, res) => {
 		res.json(await queryAllTypes());
+	});
+
+	router.get("/passive", async (req, res) => {
+		res.json(await getAllPassives());
 	});
 
 	return router;

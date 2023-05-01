@@ -6,11 +6,13 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 //database
-import db from "./db.js";
+import { connectToDB } from "./db.js";
 
 //routes
 import monsterInfoRouter from "./router/monsterInfo.js";
 import captureRouter from "./router/capture.js";
+
+connectToDB();
 
 app.use(bodyParser.json());
 app.use(cookieParser());

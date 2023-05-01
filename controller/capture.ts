@@ -55,7 +55,7 @@ const actions = {
 };
 
 const zoneIntegrity = (zone) => {
-	totalAppearRate = 0;
+	let totalAppearRate = 0;
 	zone.monsters.map((monster) => {
 		totalAppearRate += monster.appearRate;
 	});

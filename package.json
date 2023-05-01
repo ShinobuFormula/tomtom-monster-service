@@ -18,5 +18,8 @@
 		"mongoose": "^6.2.10",
 		"nodemon": "^2.0.15"
 	},
-	"type": "module"
+	"type": "module",
+	"devDependencies": {
+		"@types/node": "^18.16.3"
+	}
 }
