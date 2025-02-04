@@ -4,7 +4,7 @@ import {
 	getEffectiveness,
 } from "../model/affinity.js";
 import {
-	MonsterInfoInterface,
+	BaseMonster,
 	monsterType,
 } from "../model/interfaces/monster.js";
 import { TraitInterface } from "../model/interfaces/trait.js";
@@ -16,9 +16,9 @@ import {
 	updateTrait,
 } from "../model/trait.js";
 
-const checkStats = (stats) => {};
+const checkStats = (stats) => { };
 
-const addMonsterInfo = (body: MonsterInfoInterface) => {
+const addMonsterInfo = (body: BaseMonster) => {
 	return postMonsterInfo(body);
 };
 

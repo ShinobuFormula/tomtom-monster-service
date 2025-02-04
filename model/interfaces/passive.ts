@@ -1,10 +1,6 @@
-import { effectTypeEnum, targetTypeEnum } from "./fight";
+import { effectType, targetType } from "./action";
 import { monsterType } from "./monster";
-
-enum targetEnum {
-	TO = "to",
-	FROM = "from",
-}
+import { effectInterface } from "./skill";
 
 enum triggerWhenEnum {
 	BEFORE = "before",
@@ -12,25 +8,20 @@ enum triggerWhenEnum {
 	AFTER = "after",
 }
 
+type triggerWhenType = `${triggerWhenEnum}`;
+
 interface PassiveInterface {
 	name: string;
 	description: string;
 	trigger: {
-		when: `${triggerWhenEnum}`;
-		actionType: `${effectTypeEnum}`;
+		when: triggerWhenType
 		from: string;
-		to: string;
-		type: `${monsterType}`;
-		target: string;
+		actionType?: effectType
+		to?: string;
+		type?: monsterType;
+		targetType?: targetType
 	};
-	effects: [
-		{
-			targetType: `${targetTypeEnum}`;
-			target: `${targetEnum}`;
-			type: `${effectTypeEnum}`;
-			power: number;
-		}
-	];
+	effects: effectInterface[];
 }
 
-export { PassiveInterface, targetEnum };
+export { PassiveInterface };

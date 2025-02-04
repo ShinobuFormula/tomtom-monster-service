@@ -16,6 +16,7 @@ const skillSchema = new mongoose.Schema<SkillInterface>({
 			power: { type: Number, required: true },
 		},
 	],
+	targetType: { type: String, required: true },
 	priority: { type: Number, required: true },
 });
 

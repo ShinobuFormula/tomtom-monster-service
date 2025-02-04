@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import { MonsterInfoInterface } from "./interfaces/monster";
+import { BaseMonster } from "./interfaces/monster";
 
-const monsterInfoSchema = new mongoose.Schema<MonsterInfoInterface>({
+const monsterInfoSchema = new mongoose.Schema<BaseMonster>({
 	name: String,
 	type: [String],
-	stats: {
+	baseStats: {
 		hp: Number,
 		attack: Number,
 		def: Number,
@@ -13,9 +13,9 @@ const monsterInfoSchema = new mongoose.Schema<MonsterInfoInterface>({
 		balance: Number,
 	},
 	image: String,
-	passive: [String],
-	trait: String,
-	skills: [String],
+	allPassives: [String],
+	allSkills: [String],
+	eggSkills: [String]
 });
 
 const monsterInfoModel = mongoose.model("MonsterInfo", monsterInfoSchema);

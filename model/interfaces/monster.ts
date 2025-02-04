@@ -1,21 +1,54 @@
-enum monsterType {
+import { PassiveInterface } from "./passive";
+import { SkillInterface } from "./skill";
+import { statusInterface } from "./status";
+
+enum monsterTypeEnum {
+	AERIAL = "aerial",
 	FIRE = "fire",
-	PLANT = "plant",
-	WATER = "water",
-	NEUTRAL = "neutral",
+	GHOST = "ghost",
 	MARTIAL = "martial",
 	MENTAL = "mental",
+	NEUTRAL = "neutral",
+	PLANT = "plant",
 	POISON = "poison",
-	AERIAL = "aerial",
-	VOLT = "volt",
 	ROCK = "rock",
-	GHOST = "ghost",
 	SPATIAL = "spatial",
+	VOLT = "volt",
+	WATER = "water",
 }
 
-interface MonsterInfoInterface {
+enum monsterStatsEnum {
+	ATK = "attack",
+	BALANCE = "balance",
+	DEF = "def",
+	HP = "hp",
+	SPEED = "speed",
+	STAMINA = "stamina",
+}
+
+type monsterType = `${monsterTypeEnum}`;
+
+interface BaseMonster {
 	name: string;
-	type: [`${monsterType}`];
+	type: monsterType[];
+	baseStats: {
+		hp: number;
+		attack: number;
+		def: number;
+		speed: number;
+		stamina: number;
+		balance: number;
+	};
+	image: string;
+	allPassives: string[];
+	allSkills: string[];
+	eggSkills: string[];
+
+}
+
+interface Monster {
+	name: string;
+	type: monsterType[];
 	stats: {
 		hp: number;
 		attack: number;
@@ -25,26 +58,15 @@ interface MonsterInfoInterface {
 		balance: number;
 	};
 	image: string;
-	passive: [string];
-	trait: string;
-	skills: [string];
+	passive: string;
+	skills: string[];
 }
 
-interface MonsterInterface {
-	name: string;
-	type: [`${monsterType}`];
-	stats: {
-		hp: number;
-		attack: number;
-		def: number;
-		speed: number;
-		stamina: number;
-		balance: number;
-	};
-	image: string;
-	passive: {};
-	trait: string;
-	skills: [{}];
-}
 
-export { MonsterInfoInterface, MonsterInterface, monsterType };
+export {
+	BaseMonster,
+	Monster,
+	monsterType,
+	monsterTypeEnum,
+	monsterStatsEnum
+};
