@@ -5,8 +5,12 @@ import { getAllPassives, postPassive } from "../model/passive.js";
 const passiveRouter = () => {
     const router = express.Router();
 
-    router.get("/", async (req, res) => {
-        res.json(await getAllPassives());
+    router.get("/", async (req: Request, res: Response) => {
+        try {
+			res.json(await getAllPassives());
+		} catch (error) {
+			res.status(404).send("Ressource not found or unreachable");
+		}
     });
 
     router.post("/", async (req: Request, res: Response) => {

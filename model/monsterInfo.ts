@@ -30,6 +30,13 @@ const postBaseMonster = (baseMonster) => {
 	return monster.save();
 };
 
+const getBaseMonsterByName = async (monsterName: string) => {
+	const monster = await baseMonsterModel.findOne({
+		name: monsterName,
+	});
+	return monster;
+};
+
 const updateBaseMonster = async (id, body) => {
 	const monster = await baseMonsterModel.findOneAndUpdate({ _id: id }, body, {
 		new: true,
@@ -37,4 +44,4 @@ const updateBaseMonster = async (id, body) => {
 	return monster.save();
 };
 
-export { getAllBaseMonsters, postBaseMonster, updateBaseMonster };
+export { getAllBaseMonsters, postBaseMonster, updateBaseMonster, getBaseMonsterByName };
