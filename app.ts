@@ -9,24 +9,25 @@ import cors from "cors";
 import { connectToDB } from "./db.js";
 
 //routes
-import monsterInfoRouter from "./router/monsterInfo.js";
-import captureRouter from "./router/capture.js";
+import baseMonsterRouter from "./router/baseMonster.js";
+import passiveRouter from "./router/passive.js";
 
 connectToDB();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-const corsOptions = {
-	origin: "*",
+var corsOptions = {
+	origin: true,
 	credentials: true,
 	optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
 
-app.use("/monsterinfo", monsterInfoRouter());
-app.use("/capture", captureRouter());
+app.use("/monster", baseMonsterRouter());
+app.use("/passive", passiveRouter())
+// app.use("/capture", captureRouter());
 
 app.get("/", function (req, res) {
 	res.send("MonsterInfo micro services");

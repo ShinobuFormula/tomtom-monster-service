@@ -11,15 +11,17 @@ const passiveSchema = new mongoose.Schema<PassiveInterface>({
 		from: String,
 		to: String,
 		type: { type: String },
-		target: String,
+		targetType: String,
 	},
 	effects: [
 		{
 			targetType: { type: String, required: true },
-			target: { type: String, required: true },
 			type: { type: String, required: true },
-			power: { type: Number, required: true },
-		},
+			side: { type: String, required: true },
+			power: { type: Number, required: false },
+			status: { type: String, required: false },
+			percentage: { type: String, required: false },
+		}
 	],
 });
 

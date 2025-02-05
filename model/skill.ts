@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { SkillInterface } from "./interfaces/skill";
+import { SkillInterface, Effect } from "./interfaces/skill";
 
 const skillSchema = new mongoose.Schema<SkillInterface>({
 	name: { type: String, required: true },
@@ -9,13 +9,13 @@ const skillSchema = new mongoose.Schema<SkillInterface>({
 		type: { type: String, required: true },
 		value: { type: Number, required: true },
 	},
-	effects: [
-		{
-			targetType: { type: String, required: true },
-			type: { type: String, required: true },
-			power: { type: Number, required: true },
-		},
-	],
+	effects: [{
+		targetType: { type: String, required: true },
+		type: { type: String, required: true },
+		power: { type: Number, required: true },
+		status: { type: String, required: false },
+		percentage: { type: Number, required: false },
+	}],
 	targetType: { type: String, required: true },
 	priority: { type: Number, required: true },
 });

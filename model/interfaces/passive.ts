@@ -1,6 +1,6 @@
 import { effectType, targetType } from "./action";
 import { monsterType } from "./monster";
-import { effectInterface } from "./skill";
+import { PassiveEffect } from "./skill";
 
 enum triggerWhenEnum {
 	BEFORE = "before",
@@ -21,7 +21,7 @@ interface PassiveInterface {
 		type?: monsterType;
 		targetType?: targetType
 	};
-	effects: effectInterface[];
+	effects: PassiveEffect[];
 }
 
 export { PassiveInterface };

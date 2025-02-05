@@ -21,17 +21,26 @@ interface SkillInterface {
 	description: string;
 	type: monsterType;
 	cost: { type: skillCostType; value: number };
-	effects: effectInterface[];
+	effects: Effect[];
 	targetType: targetType;
 	priority: number;
 }
 
-interface effectInterface {
+interface Effect {
 	targetType: targetType;
-	side?: sideType;
 	type: effectType;
 	power: number;
 	status?: statusNameType;
+	percentage?: number;
 }
 
-export { SkillInterface, effectInterface };
+interface PassiveEffect {
+	targetType: targetType;
+	type: effectType;
+	power: number;
+	side: sideType;
+	status?: statusNameType;
+	percentage?: number;
+}
+
+export { SkillInterface, Effect, PassiveEffect };
