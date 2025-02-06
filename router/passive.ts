@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { getAllPassives, getPassiveByName, postPassive, updatePassive } from "../model/passive.js";
+import { loadPassives } from "../controller/preload.js";
 
 
 const passiveRouter = () => {
@@ -26,6 +27,7 @@ const passiveRouter = () => {
     router.post("/", async (req: Request, res: Response) => {
         try {
             res.json(await postPassive(req.body));
+            loadPassives();
         } catch (error) {
             res.status(400).send("Wrong data or empty body");
         }
@@ -34,7 +36,7 @@ const passiveRouter = () => {
     router.put("/:id", async (req: Request, res: Response) => {
         try {
             res.json(await updatePassive(req.params.id, req.body));
-
+            loadPassives();
         } catch (error) {
             res.status(404).send("Empty body or wrong data");
         }

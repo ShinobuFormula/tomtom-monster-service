@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { getAllSkills, getSkillByName, postSkill, updateSkill } from "../model/skill.js";
+import { loadSkills } from "../controller/preload.js";
 
 
 const skillRouter = () => {
@@ -26,9 +27,8 @@ const skillRouter = () => {
     router.post("/", async (req: Request, res: Response) => {
         try {
             res.json(await postSkill(req.body));
+            loadSkills();
         } catch (error) {
-            console.log(error);
-
             res.status(404).send("Empty body or wrong data");
         }
     });
@@ -36,6 +36,7 @@ const skillRouter = () => {
     router.put("/:id", async (req: Request, res: Response) => {
         try {
             res.json(await updateSkill(req.params.id, req.body));
+            loadSkills();
         } catch (error) {
             res.status(404).send("Empty body or wrong data");
         }
@@ -45,5 +46,3 @@ const skillRouter = () => {
 };
 
 export default skillRouter;
-
-
