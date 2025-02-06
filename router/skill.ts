@@ -1,13 +1,13 @@
 import express, { Request, Response } from "express";
-import { getAllPassives, getPassiveByName, postPassive, updatePassive } from "../model/passive.js";
+import { getAllSkills, getSkillByName, postSkill, updateSkill } from "../model/skill.js";
 
 
-const passiveRouter = () => {
+const skillRouter = () => {
     const router = express.Router();
 
     router.get("/", async (req: Request, res: Response) => {
         try {
-            res.json(await getAllPassives());
+            res.json(await getAllSkills());
         } catch (error) {
             res.status(404).send("Ressource not found or unreachable");
         }
@@ -15,9 +15,9 @@ const passiveRouter = () => {
 
     router.get("/:name", async (req: Request, res: Response) => {
         try {
-            const passive = await getPassiveByName(req.params.name);
-            if (passive === null) throw new Error();
-            else res.json(passive)
+            const skill = await getSkillByName(req.params.name);
+            if (skill === null) throw new Error();
+            else res.json(skill)
         } catch (error) {
             res.status(404).send("Ressource not found or unreachable");
         }
@@ -25,16 +25,17 @@ const passiveRouter = () => {
 
     router.post("/", async (req: Request, res: Response) => {
         try {
-            res.json(await postPassive(req.body));
+            res.json(await postSkill(req.body));
         } catch (error) {
-            res.status(400).send("Wrong data or empty body");
+            console.log(error);
+
+            res.status(404).send("Empty body or wrong data");
         }
     });
 
     router.put("/:id", async (req: Request, res: Response) => {
         try {
-            res.json(await updatePassive(req.params.id, req.body));
-
+            res.json(await updateSkill(req.params.id, req.body));
         } catch (error) {
             res.status(404).send("Empty body or wrong data");
         }
@@ -43,4 +44,6 @@ const passiveRouter = () => {
     return router;
 };
 
-export default passiveRouter;
+export default skillRouter;
+
+

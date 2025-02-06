@@ -10,7 +10,7 @@ enum triggerWhenEnum {
 
 type triggerWhenType = `${triggerWhenEnum}`;
 
-interface PassiveInterface {
+interface Passive {
 	name: string;
 	description: string;
 	trigger: {
@@ -24,4 +24,4 @@ interface PassiveInterface {
 	effects: PassiveEffect[];
 }
 
-export { PassiveInterface };
+export { Passive };

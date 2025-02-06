@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { SkillInterface, Effect } from "./interfaces/skill";
+import { Skill, Effect } from "./interfaces/skill";
 
-const skillSchema = new mongoose.Schema<SkillInterface>({
+const skillSchema = new mongoose.Schema<Skill>({
 	name: { type: String, required: true },
 	description: String,
 	type: { type: String, required: true },
@@ -15,12 +15,13 @@ const skillSchema = new mongoose.Schema<SkillInterface>({
 		power: { type: Number, required: true },
 		status: { type: String, required: false },
 		percentage: { type: Number, required: false },
+		_id: false
 	}],
 	targetType: { type: String, required: true },
 	priority: { type: Number, required: true },
 });
 
-const skillModel = mongoose.model<SkillInterface>("Skill", skillSchema);
+const skillModel = mongoose.model<Skill>("Skill", skillSchema);
 
 const getAllSkills = async () => {
 	const skills = await skillModel.find();
@@ -34,7 +35,7 @@ const getSkillByName = async (skillName: string) => {
 	return skill;
 };
 
-const postSkill = (sentSkill: SkillInterface) => {
+const postSkill = (sentSkill: Skill) => {
 	const skill = new skillModel(sentSkill);
 	return skill.save();
 };

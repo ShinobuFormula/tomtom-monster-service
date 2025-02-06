@@ -11,8 +11,12 @@ import { connectToDB } from "./db.js";
 //routes
 import baseMonsterRouter from "./router/baseMonster.js";
 import passiveRouter from "./router/passive.js";
+import skillRouter from "./router/skill.js";
+import { getPassive, initPreload } from "./controller/preload.js";
 
 connectToDB();
+
+initPreload();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -27,7 +31,8 @@ app.use(cors(corsOptions));
 
 app.use("/monster", baseMonsterRouter());
 app.use("/passive", passiveRouter())
-// app.use("/capture", captureRouter());
+app.use("/skill", skillRouter())
+
 
 app.get("/", function (req, res) {
 	res.send("MonsterInfo micro services");

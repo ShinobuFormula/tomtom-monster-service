@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-import { PassiveInterface } from "./interfaces/passive";
+import { Passive } from "./interfaces/passive";
 
-const passiveSchema = new mongoose.Schema<PassiveInterface>({
+const passiveSchema = new mongoose.Schema<Passive>({
 	name: { type: String, required: true },
 	description: String,
 	trigger: {
@@ -21,18 +21,26 @@ const passiveSchema = new mongoose.Schema<PassiveInterface>({
 			power: { type: Number, required: false },
 			status: { type: String, required: false },
 			percentage: { type: String, required: false },
+			_id: false
 		}
 	],
 });
 
-const passiveModel = mongoose.model<PassiveInterface>("Passive", passiveSchema);
+const passiveModel = mongoose.model<Passive>("Passive", passiveSchema);
 
 const getAllPassives = async () => {
 	const passives = await passiveModel.find();
 	return passives;
 };
 
-const postPassive = (sentPassive: PassiveInterface) => {
+const getPassiveByName = async (passiveName: string) => {
+	const passive = await passiveModel.findOne({
+		name: passiveName,
+	});
+	return passive;
+};
+
+const postPassive = (sentPassive: Passive) => {
 	const passive = new passiveModel(sentPassive);
 	return passive.save();
 };
@@ -44,4 +52,4 @@ const updatePassive = async (id, body) => {
 	passive.save();
 };
 
-export { getAllPassives, postPassive, updatePassive };
+export { getAllPassives, getPassiveByName, postPassive, updatePassive };

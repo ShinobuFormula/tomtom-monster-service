@@ -1,6 +1,5 @@
-import { PassiveInterface } from "./passive";
-import { SkillInterface } from "./skill";
-import { statusInterface } from "./status";
+import { Passive } from "./passive";
+import { Skill } from "./skill";
 
 enum monsterTypeEnum {
 	AERIAL = "aerial",
@@ -46,7 +45,7 @@ interface BaseMonster {
 
 }
 
-interface Monster {
+interface FightMonster {
 	name: string;
 	type: monsterType[];
 	stats: {
@@ -58,14 +57,14 @@ interface Monster {
 		balance: number;
 	};
 	image: string;
-	passive: string;
-	skills: string[];
+	passive: Passive;
+	skills: Skill[];
 }
 
 
 export {
 	BaseMonster,
-	Monster,
+	FightMonster,
 	monsterType,
 	monsterTypeEnum,
 	monsterStatsEnum

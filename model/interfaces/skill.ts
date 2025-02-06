@@ -16,7 +16,7 @@ enum sideEnum {
 type sideType = `${sideEnum}`;
 type skillCostType = `${skillCostEnum}`
 
-interface SkillInterface {
+interface Skill {
 	name: string;
 	description: string;
 	type: monsterType;
@@ -43,4 +43,4 @@ interface PassiveEffect {
 	percentage?: number;
 }
 
-export { SkillInterface, Effect, PassiveEffect };
+export { Skill, Effect, PassiveEffect };
