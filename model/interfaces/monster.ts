@@ -46,6 +46,7 @@ interface BaseMonster {
 }
 
 interface FightMonster {
+	_id: string;
 	name: string;
 	type: monsterType[];
 	stats: {
@@ -61,10 +62,14 @@ interface FightMonster {
 	skills: Skill[];
 }
 
+interface Stock {
+	pc: FightMonster[];
+}
 
 export {
 	BaseMonster,
 	FightMonster,
+	Stock,
 	monsterType,
 	monsterTypeEnum,
 	monsterStatsEnum

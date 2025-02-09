@@ -13,6 +13,7 @@ import baseMonsterRouter from "./router/baseMonster.js";
 import passiveRouter from "./router/passive.js";
 import skillRouter from "./router/skill.js";
 import { getPassive, initPreload } from "./controller/preload.js";
+import stockRouter from "./router/stock.js";
 
 connectToDB();
 
@@ -32,6 +33,7 @@ app.use(cors(corsOptions));
 app.use("/monster", baseMonsterRouter());
 app.use("/passive", passiveRouter())
 app.use("/skill", skillRouter())
+app.use("/stock", stockRouter())
 
 
 app.get("/", function (req, res) {

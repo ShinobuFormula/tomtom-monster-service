@@ -1,4 +1,4 @@
-import { SkillInterface } from "./skill.js";
+import { Skill } from "./skill.js";
 
 enum targetTypeEnum {
 	ALL = "all",
@@ -26,7 +26,7 @@ type targetType = `${targetTypeEnum}`
 interface actionInterface {
 	sourceID: string;
 	targetInfo: targetInfoType
-	skill: SkillInterface;
+	skill: Skill;
 }
 
 interface targetInfoPlayerID {
@@ -43,8 +43,8 @@ interface targetInfoID {
 type targetInfoType = targetInfoPlayerID | targetInfoID;
 
 export {
-    actionInterface,
-    targetInfoType,
-    effectType,
-    targetType,
+	actionInterface,
+	targetInfoType,
+	effectType,
+	targetType,
 }
