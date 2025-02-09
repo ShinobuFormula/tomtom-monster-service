@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { addMonsterToStock, getAllStocks, getStockById, removeMonsterFromStock, updateStockMonster } from "../model/stock.js";
+import { updateTeam } from "../model/user.js";
 
 const stockRouter = () => {
     const router = express.Router();
@@ -50,6 +51,9 @@ const stockRouter = () => {
         }
     })
 
+    router.put("/team/:id", (req: Request, res: Response) => {
+        updateTeam(req.params.id, req.body)
+    })
 
     return router;
 };

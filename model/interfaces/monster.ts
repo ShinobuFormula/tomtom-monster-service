@@ -62,6 +62,13 @@ interface FightMonster {
 	skills: Skill[];
 }
 
+interface Team {
+	first: FightMonster,
+	second: FightMonster,
+	third: FightMonster,
+	fourth: FightMonster
+}
+
 interface Stock {
 	pc: FightMonster[];
 }
@@ -70,6 +77,7 @@ export {
 	BaseMonster,
 	FightMonster,
 	Stock,
+	Team,
 	monsterType,
 	monsterTypeEnum,
 	monsterStatsEnum
