@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import { addMonsterToStock, getAllStocks, getStockById, removeMonsterFromStock, updateStockMonster } from "../model/stock.js";
-import { updateTeam } from "../model/user.js";
 import { controlUpdate } from "../controller/team.js";
 
 const stockRouter = () => {

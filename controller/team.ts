@@ -11,8 +11,11 @@ const controlUpdate = async (userId: string, stockId: string, team: Team) => {
         console.log("no duplicates");
 
         const stock = await getStockById(stockId)
-
-        if (teamArray.every(val => stock.pc.find((monster) => monster._id === val._id))) return await updateTeam(userId, team);
+        if (teamArray.every(val => stock.pc.find((monster) => monster._id === val._id)))
+        {
+            const tempUser = { team: team }
+            return await updateTeam(userId, tempUser);
+        }
     }
 }
 
