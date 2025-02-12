@@ -40,8 +40,9 @@ const userSchema = new mongoose.Schema({
 const userModel = mongoose.model("user", userSchema);
 
 
-const updateTeam = async (id: string, team: Team) => {
-	const user = await userModel.findOneAndUpdate({ _id: id }, team, { new: true })
+const updateTeam = async (userId: string, team: Team) => {
+	//Need some changes bc it aint updating team
+	const user = await userModel.findOneAndUpdate({ _id: userId }, { team }, { new: true })
 	user.save();
 	return user;
 }

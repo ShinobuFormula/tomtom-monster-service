@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { addMonsterToStock, getAllStocks, getStockById, removeMonsterFromStock, updateStockMonster } from "../model/stock.js";
 import { updateTeam } from "../model/user.js";
+import { controlUpdate } from "../controller/team.js";
 
 const stockRouter = () => {
     const router = express.Router();
@@ -51,8 +52,14 @@ const stockRouter = () => {
         }
     })
 
-    router.put("/team/:id", (req: Request, res: Response) => {
-        updateTeam(req.params.id, req.body)
+    router.put("/team/:id", async (req: Request, res: Response) => {
+        try {
+            res.json(await controlUpdate(req.params.id, req.body.stockId, req.body.team));
+        } catch (error) {
+            console.log(error);
+
+            res.status(404).send("Empty body or wrong data");
+        }
     })
 
     return router;

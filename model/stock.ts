@@ -39,5 +39,4 @@ const getStockById = async (id: string) => {
     return stock;
 };
 
-
 export { addMonsterToStock, removeMonsterFromStock, getAllStocks, getStockById, updateStockMonster }
