@@ -19,11 +19,11 @@ const loadSkills = async () => {
     skills.push(...await getAllSkills());
 }
 
-const getPassive = (name: string) => {
+const getPassive = (name: string): Passive => {
     return passives.find((passive) => passive.name === name);
 }
 
-const getSkill = (name: string) => {
+const getSkill = (name: string): Skill => {
     return skills.find((skill) => skill.name === name);
 }
 

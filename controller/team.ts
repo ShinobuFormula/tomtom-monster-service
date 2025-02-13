@@ -1,6 +1,10 @@
-import { FightMonster, Team } from "../model/interfaces/monster";
+import { FightMonster, FlatFightMonster, Team } from "../model/interfaces/monster";
+import { Passive } from "../model/interfaces/passive";
+import { Skill } from "../model/interfaces/skill";
+import { User } from "../model/interfaces/user";
 import { getStockById } from "../model/stock.js";
-import { updateTeam } from "../model/user.js";
+import { getUserByID, updateTeam } from "../model/user.js";
+import { getPassive, getSkill } from "./preload.js";
 
 
 const controlUpdate = async (userId: string, stockId: string, team: Team) => {
@@ -19,4 +23,23 @@ const controlUpdate = async (userId: string, stockId: string, team: Team) => {
     }
 }
 
-export { controlUpdate }
+const fillUserTeam = async (userId: string) => {
+    const user: User = await getUserByID(userId);
+    const tempTeam: Team = {
+        first: user.team.first ? fillMonster(user.team.first as FlatFightMonster): undefined,
+        second: user.team.second ? fillMonster(user.team.second as FlatFightMonster): undefined,
+        third: user.team.third ? fillMonster(user.team.third as FlatFightMonster): undefined,
+        fourth: user.team.fourth ? fillMonster(user.team.fourth as FlatFightMonster) : undefined
+    }
+    user.team = tempTeam;
+    return user;
+} 
+
+const fillMonster = (monster: FlatFightMonster): FightMonster => {
+    const tempPassive: Passive = getPassive(monster.passive);
+    const tempSkill: Skill[] = monster.skills.map((skill) => getSkill(skill));
+    const tempMonster: FightMonster = {...monster, passive : tempPassive, skills: tempSkill};
+    return tempMonster;
+}
+
+export { controlUpdate, fillUserTeam }

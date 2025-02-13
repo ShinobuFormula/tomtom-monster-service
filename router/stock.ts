@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { addMonsterToStock, getAllStocks, getStockById, removeMonsterFromStock, updateStockMonster } from "../model/stock.js";
-import { controlUpdate } from "../controller/team.js";
+import { controlUpdate, fillUserTeam } from "../controller/team.js";
 
 const stockRouter = () => {
     const router = express.Router();
@@ -58,6 +58,14 @@ const stockRouter = () => {
             console.log(error);
 
             res.status(404).send("Empty body or wrong data");
+        }
+    })
+
+    router.get("/team/:id", async (req: Request, res:Response) => {
+        try {
+            res.json(await fillUserTeam(req.params.id));
+        } catch (error) {
+            res.send(error);
         }
     })
 

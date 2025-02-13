@@ -30,23 +30,26 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: false,
 	},
-	team: [{
+	team: {
 		type: Object,
 		required: false,
 		default: {},
-	}],
+	},
 });
 
 const userModel = mongoose.model("user", userSchema);
 
+const getUserByID = async (uid) => {
+	const user = await userModel.findOne({ _id: uid });
+	return user;
+};
 
 const updateTeam = async (userId: string, tempUser) => {
-	//Need some changes bc it aint updating team
 	const user = await userModel.findOneAndUpdate({ _id: userId }, tempUser, { new: true })
 	user.save();
 	return user;
 }
 
 export {
-	updateTeam
+	updateTeam, getUserByID
 }
